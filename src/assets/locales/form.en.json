@@ -1,0 +1,81 @@
+{
+  "title": "Rethinking retirement",
+  "defaults": {
+    "title": "Q{{index}}",
+    "back": "Back",
+    "next": "Next",
+    "placeholder": "write here..."
+  },
+  "slides": [{
+    "type": "info",
+    "title": "Hello, visitor!",
+    "subtitle": "Welcome to the Academy of Life - an experiment in rethinking retirement",
+    "body": "This ethnographic research is part of a global conversation in which participants imagine how they want to spend their elderly years. The collected data is anonymous, collected on an open source platform. You can see, edit or delete it by visiting a link we will send you as confirmation. You can finish this questionnaire at any point - but the further you get, the more concrete your vision of retirement will become."
+  }, {
+    "type": "info",
+    "title": "Ready?",
+    "body": "Imagine retirement as a period when you don't need to go to work anymore. You don't need to be \"retired\", either. The division between retirement and work doesn't exist, you create the balance."
+  }, {
+    "type": "question",
+    "index": 1,
+    "body": "We don't seem to discuss retirement much with others.\nHow much do you think about your own retirement?\nWhat do you think about?\nAnd what do you avoid thinking about?"
+  }, {
+    "type": "question",
+    "index": 2,
+    "body": "How about work, hobbies, family life, leisure, pleasure...\n\nWhich activities from your present life would you like to keep doing? Which things would you like to never do again?"
+  }, {
+    "type": "question",
+    "index": 3,
+    "body": "Great, now that you've chosen what stays and what to leave behind - start to imagine your future self.\nThe 'dream you'. How do you get there?\nWhich new skills and what knowledge do you want to acquire?"
+  }, {
+    "type": "question",
+    "index": 4,
+    "body": "Imagine your housing situation and the people around you (or their absence). Who are you surrounded by in your retirement? Where and how would you like to live?"
+  }, {
+    "type": "question",
+    "index": 5,
+    "body": "If you know people who have retired, was there something to learn from their experience and approach? Could you share their impressions?"
+  }, {
+    "type": "question",
+    "index": 6,
+    "body": "How do you imagine sustaining yourself financially?\nMaybe you have a plan, a tip, or an idea, that you would like to share?"
+  }, {
+    "type": "form",
+    "title": "The last little bit!",
+    "subtitle": "These questions will help make the research even more exact.",
+    "fields": [{
+      "name": "name",
+      "placeholder": "Name/nickname",
+      "required": true
+    }, {
+      "name": "age",
+      "type": "integer",
+      "label": "Name/nickname"
+    }, {
+      "name": "email",
+      "type": "email",
+      "label": "E-mail",
+      "required": true
+    }, {
+      "name": "consent",
+      "type": "checkbox",
+      "label": ""
+    }],
+    "actions": {
+      "next": {
+        "text": "Send",
+        "url": "/submit"
+      }
+    }
+  }, {
+    "type": "info",
+    "title": "Well done!",
+    "body": "Thank you for taking the time to fill out the questionnaire! Since this project is not just a research, you can experience one of the versions of retirement by visiting the the Fužine retirement home, aka Academy of Life. The challenge team has worked there for the past months and prepared different ways for you to engage with the space and its inhabitants. You will receive the instructions on your email, or you can grab the special BIO zine that explains it. See you at the Cafe at Home!\n\n * you will receive the confirmation of your participation and access to delete or edit your data on your email, as well as the updates on the Academy of Life program and events. You can opt out at any time, no spam guaranteed.",
+    "actions": {
+      "next": {
+        "text": "Map",
+        "url": "/map"
+      }
+    }
+  }]
+}

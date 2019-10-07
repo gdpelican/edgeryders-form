@@ -1,28 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Slides v-bind:defaults="defaults" v-bind:slides="slides" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Slides from './components/Slides.vue'
+import { defaults, slides } from './assets/locales/form.en.json'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+  name: 'edgeryders-form',
+  components: { Slides },
+  data: () => ({ defaults, slides })
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
