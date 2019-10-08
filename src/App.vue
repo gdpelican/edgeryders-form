@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <Slides v-bind:defaults="defaults" v-bind:slides="slides" />
-  </div>
+  <Slides :defaults="defaults" :slides="slides" />
 </template>
 
 <script>

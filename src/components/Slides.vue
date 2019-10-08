@@ -1,32 +1,68 @@
 <template>
-  <div id="slides">
-    <keep-alive>
-      <component v-bind:is="component" v-bind="slide" v-bind:maxIndex="maxIndex" />
-    </keep-alive>
-    <button v-show="canGoBack" v-on:click="back">Back</button>
-    <button v-show="canGoNext" v-on:click="next">Next</button>
+  <div class="slides">
+    <div class="content">
+      <Title class="even" v-bind="slide" />
+      <Body class="even" v-bind="slide" />
+      <Cancel :cancel="cancel()" />
+    </div>
+    <Navigation
+      :back="back()"
+      :next="next()"
+      :maxIndex="maxIndex"
+      v-bind="slide"
+    />
   </div>
 </template>
 
 <script>
-import Form from './Form.vue'
-import Info from './Info.vue'
-import Question from './Question.vue'
+import Title      from './slideComponents/Title.vue'
+import Body       from './slideComponents/Body.vue'
+import Cancel     from './slideComponents/Cancel.vue'
+import Navigation from './slideComponents/Navigation.vue'
 
 export default {
   props: { slides: Array, defaults: Object },
-  data() { return { currentIndex: 0 } },
+  data: () => ({ currentIndex: 0 }),
   computed: {
     slide() { return Object.assign({}, this.defaults, this.slides[this.currentIndex]) },
-    component() { return this.slide.type },
-    canGoBack() { return this.currentIndex > 0 },
-    canGoNext() { return this.currentIndex < this.slides.length },
-    maxIndex() { return Math.max(...this.slides.map(slide => slide.index || 0)) }
+    maxIndex()  { return Math.max(...this.slides.map(slide => slide.index || 0)) },
   },
   methods: {
-    next() { this.currentIndex += 1 },
-    back() { this.currentIndex -= 1 }
+    cancel() {
+      return this.currentIndex > 0
+        ? () => this.currentIndex = 0
+        : null
+    },
+    back() {
+      return this.currentIndex > 0
+        ? () => this.currentIndex -= 1
+        : null
+    },
+    next() {
+      return this.currentIndex < this.slides.length - 1
+        ? () => this.currentIndex += 1
+        : this.submit
+    },
+    submit() {
+      // console.log('hello!')
+    }
   },
-  components: { Form, Info, Question },
+  components: { Title, Body, Cancel, Navigation },
 }
 </script>
+
+<style scoped>
+  .slides {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .content { display: flex; }
+
+  .even {
+    flex-basis: 50%;
+    margin-right: 2rem;
+  }
+</style>

@@ -1,0 +1,32 @@
+$primary: #d7f205;
+$secondary: black;
+
+$complete: black;
+$incomplete: #eeeeee;
+
+html, body {
+  min-height: 100%;
+  display: flex;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 100%;
+  margin: 3rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-background { background-color: $primary; }
+.primary { color: $primary; }
+
+.secondary-background { background-color: $secondary; }
+.secondary { color: $secondary; }
+
+.complete { background-color: $complete; }
+.incomplete { background-color: $incomplete; }
