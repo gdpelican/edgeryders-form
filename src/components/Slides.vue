@@ -3,7 +3,7 @@
     <div class="content">
       <Title class="even" v-bind="slide" />
       <Body class="even" v-bind="slide" />
-      <Cancel :cancel="cancel()" />
+      <Cancel v-if="canCancel" :go="go" />
     </div>
     <Navigation
       :back="back()"
@@ -21,18 +21,14 @@ import Cancel     from './slideComponents/Cancel.vue'
 import Navigation from './slideComponents/Navigation.vue'
 
 export default {
-  props: { slides: Array, defaults: Object },
+  props: { go: Function, slides: Array, defaults: Object },
   data: () => ({ currentIndex: 0 }),
   computed: {
     slide() { return Object.assign({}, this.defaults, this.slides[this.currentIndex]) },
-    maxIndex()  { return Math.max(...this.slides.map(slide => slide.index || 0)) },
+    maxIndex() { return Math.max(...this.slides.map(slide => slide.index || 0)) },
+    canCancel() { return this.currentIndex > 0 }
   },
   methods: {
-    cancel() {
-      return this.currentIndex > 0
-        ? () => this.currentIndex = 0
-        : null
-    },
     back() {
       return this.currentIndex > 0
         ? () => this.currentIndex -= 1
@@ -53,6 +49,7 @@ export default {
 
 <style scoped>
   .slides {
+    margin: 3rem;
     width: 100%;
     display: flex;
     flex-direction: column;

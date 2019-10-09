@@ -19,5 +19,13 @@ export default {
 </script>
 
 <style scoped>
-  .title { margin-top: 0; }
+  .title {
+    margin-top: 0;
+    max-width: 25rem;
+  }
+
+  .subtitle {
+    margin-top: 0;
+    max-width: 25rem;
+  }
 </style>
