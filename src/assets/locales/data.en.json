@@ -6,10 +6,22 @@
     "beginText": "BEGIN"
   },
   "defaults": {
-    "title": "Q{{index}}",
-    "backText": "BACK",
-    "nextText": "NEXT",
-    "messages": { "empty": "Please enter a response!" }
+    "info": {
+      "backText": "BACK",
+      "nextText": "NEXT"
+    },
+    "form": {
+      "title": "Q{{index}}",
+      "backText": "BACK",
+      "nextText": "NEXT",
+      "fields": [{
+        "name": "message",
+        "type": "textarea",
+        "placeholder": "write here...",
+        "required": true,
+        "error": "Please write a response!"
+      }]
+    }
   },
   "slides": [{
     "type": "info",
@@ -21,67 +33,31 @@
     "title": "Ready?",
     "body": "Imagine retirement as a period when you don't need to go to work anymore. You don't need to be \"retired\", either. The division between retirement and work doesn't exist, you create the balance."
   }, {
-    "type": "question",
+    "type": "form",
     "index": 1,
-    "body": "We don't seem to discuss retirement much with others.<br/>How much do you think about your own retirement?<br/>What do you think about? And what do you avoid thinking about?",
-    "fields": [{
-      "name": "message",
-      "type": "textarea",
-      "placeholder": "write here...",
-      "required": true
-    }]
+    "body": "We don't seem to discuss retirement much with others.<br/>How much do you think about your own retirement?<br/>What do you think about? And what do you avoid thinking about?"
   }, {
-    "type": "question",
+    "type": "form",
     "index": 2,
-    "body": "How about work, hobbies, family life, leisure, pleasure...<br/><br/>Which activities from your present life would you like to keep doing? Which things would you like to never do again?",
-    "fields": [{
-      "name": "message",
-      "type": "textarea",
-      "placeholder": "write here...",
-      "required": true
-    }]
+    "body": "How about work, hobbies, family life, leisure, pleasure...<br/><br/>Which activities from your present life would you like to keep doing? Which things would you like to never do again?"
   }, {
-    "type": "question",
+    "type": "form",
     "index": 3,
-    "body": "Great, now that you've chosen what stays and what to leave behind - start to imagine your future self.<br/>The 'dream you'. How do you get there? Which new skills and what knowledge do you want to acquire?",
-    "fields": [{
-      "name": "message",
-      "type": "textarea",
-      "placeholder": "write here...",
-      "required": true
-    }]
+    "body": "Great, now that you've chosen what stays and what to leave behind - start to imagine your future self.<br/>The 'dream you'. How do you get there? Which new skills and what knowledge do you want to acquire?"
   }, {
-    "type": "question",
+    "type": "form",
     "index": 4,
-    "body": "Imagine your housing situation and the people around you (or their absence). Who are you surrounded by in your retirement?<br />Where and how would you like to live?",
-    "fields": [{
-      "name": "message",
-      "type": "textarea",
-      "placeholder": "write here...",
-      "required": true
-    }]
+    "body": "Imagine your housing situation and the people around you (or their absence). Who are you surrounded by in your retirement?<br />Where and how would you like to live?"
   }, {
-    "type": "question",
+    "type": "form",
     "index": 5,
-    "body": "If you know people who have retired, was there something to learn from their experience and approach? Could you share their impressions?",
-    "fields": [{
-      "name": "message",
-      "type": "textarea",
-      "placeholder": "write here...",
-      "required": true
-    }]
+    "body": "If you know people who have retired, was there something to learn from their experience and approach? Could you share their impressions?"
   }, {
-    "type": "question",
+    "type": "form",
     "index": 6,
-    "body": "How do you imagine sustaining yourself financially?<br/>Maybe you have a plan, a tip, or an idea, that you would like to share?",
-    "fields": [{
-      "name": "message",
-      "type": "textarea",
-      "placeholder": "write here...",
-      "required": true
-    }]
+    "body": "How do you imagine sustaining yourself financially?<br/>Maybe you have a plan, a tip, or an idea, that you would like to share?"
   }, {
-    "type": "inputs",
+    "type": "form",
     "index": 7,
     "title": "The last little bit!",
     "body": "These questions will help make the research even more exact.",
@@ -90,7 +66,8 @@
       "type": "text",
       "placeholder": "Name/nickname",
       "half": true,
-      "required": true
+      "required": true,
+      "error": "please enter your name"
     }, {
       "name": "age",
       "type": "integer",
@@ -100,11 +77,14 @@
       "name": "email",
       "type": "email",
       "placeholder": "E-mail",
-      "required": true
+      "required": true,
+      "error": "please enter your email address"
     }, {
       "name": "consent",
       "type": "checkbox",
-      "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas est tellus, malesuada et finibus eget, faucibus atortor. Pellentesque eros velit, ullamcorper vitae tempor sitamet, tincidunt at erat"
+      "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas est tellus, malesuada et finibus eget, faucibus atortor. Pellentesque eros velit, ullamcorper vitae tempor sitamet, tincidunt at erat",
+      "required": true,
+      "error": "please consent to the terms and conditions"
     }],
     "nextText": "SEND",
     "submit": true

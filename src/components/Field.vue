@@ -4,17 +4,19 @@
       v-if="isTextarea"
       class="textarea"
       :placeholder="placeholder"
-      v-model="response[index][name]"
+      v-model="response[name].value"
     />
-    <input
-      v-else
-      :id="name"
-      class="input"
-      :placeholder="placeholder"
-      v-model="response[index][name]"
-    />
-    <label v-if="showLabel" :for="name">{{placeholder}}</label>
-    <p v-if="errors[name]" class="error">{{errors[name]}}</p>
+    <label class="label" v-else>
+      <input
+        :id="name"
+        class="input"
+        :placeholder="placeholder"
+        :type="type"
+        v-model="response[name].value"
+      />
+      <span v-if="showLabel">{{placeholder}}</span>
+    </label>
+    <p v-if="error" class="error">{{error}}</p>
   </li>
 </template>
 
@@ -22,30 +24,26 @@
 export default {
   props: {
     response: Object,
-    errors: Object,
     type: String,
-    index: Number,
     name: String,
     half: Boolean,
-    type: String,
     placeholder: String
   },
   computed: {
-    klass() { return this.half ? `half ${this.type}` : `full ${this.type}` },
+    error() { return this.response[this.name].error },
+    klass() { return `${this.half ? 'half' : 'full'} ${this.type}` },
     isTextarea() { return this.type === 'textarea' },
     showLabel() { return this.type === 'checkbox' }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .half {
     float: left;
     width: 50%;
-  }
 
-  .half:nth-child(2) .input {
-    border-left: 1px solid;
+    &:nth-child(2) .input { border-left: 1px solid; }
   }
 
   .textarea {
@@ -69,12 +67,13 @@ export default {
 
   .checkbox {
     margin: 2rem 0;
-    display: flex;
-    justify-content: flex-end;
-  }
+    display: block;
 
-  .input[type=checkbox] {
-    width: auto;
+    .label { display: flex; }
+    .input {
+      width: auto;
+      margin-right: 1rem;
+    }
   }
 
   .error {

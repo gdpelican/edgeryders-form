@@ -2,7 +2,7 @@
   <div class="slides">
     <div class="content">
       <Title class="even" v-bind="slide" />
-      <Body class="even" v-bind="slide" :errors="errors" :response="response" />
+      <Body class="even" v-bind="slide" :response="response" />
       <Cancel :go="go" />
     </div>
     <Navigation
@@ -21,28 +21,34 @@ import Cancel     from './Cancel.vue'
 import Navigation from './Navigation.vue'
 
 export default {
-  props: { go: Function, slides: Array, defaults: Object },
-  data() { return { response: {}, errors: {}, currentIndex: 0 } },
+  props: { go: Function, slides: Array },
+  data() { return { form: {}, currentIndex: 0 } },
   created() {
     this.slides
       .filter(s => s.index)
       .forEach(({ index, fields }) => {
-        this.$set(this.response, index, {})
-        fields.forEach(({ name }) => this.$set(this.response[index], name, ''))
+        this.$set(this.form, index, {})
+        fields.forEach(({ name }) => {
+          this.$set(this.form[index], name, {})
+          this.$set(this.form[index][name], 'value', '')
+          this.$set(this.form[index][name], 'error', '')
+        })
       })
   },
   computed: {
-    slide() { return Object.assign({}, this.defaults, this.slides[this.currentIndex]) },
+    slide() { return this.slides[this.currentIndex] },
+    response() { return this.form[this.slide.index] || {} },
     maxIndex() { return Math.max(...this.slides.map(slide => slide.index || 0)) },
+    isValid() { return Object.values(this.response).every(({ error }) => !error) },
     back() {
       return this.currentIndex > 0
         ? () => this.currentIndex -= 1
         : null
     },
     next() {
-      return response => {
-        this.errors = this.validate(response)
-        if (Object.keys(this.errors).length > 0) { return }
+      return () => {
+        this.validate()
+        if (!this.isValid) { return }
 
         this.slide.submit
           ? this.submit().then(this.proceed)
@@ -53,16 +59,15 @@ export default {
   methods: {
     proceed() { this.currentIndex += 1 },
     validate() {
-      const { index, fields, messages } = this.slide
-      const response = this.response[index]
+      const { index, fields } = this.slide
       if (!index || !fields) { return {} }
 
-      return fields
-        .filter(({ required, name }) => required && !response[name])
-        .reduce((hash, { name }) => ({ ...hash, [name]: messages.empty }), {})
+      fields.forEach(({ name, required, error }) => (
+        this.response[name].error = (required && !this.response[name].value) ? error : null
+      ))
     },
     submit() {
-      console.log(this.response)
+      console.log(this.form)
       return new Promise(() => {})
     }
   },
