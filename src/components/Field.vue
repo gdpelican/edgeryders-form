@@ -6,7 +6,8 @@
       :ref="name"
       :placeholder="placeholder"
       v-model="response[name].value"
-      v-on:keyup.enter="next"
+      v-on:keyup.meta.enter="next"
+      v-on:keyup.ctrl.enter="next"
     />
     <label class="label" v-else>
       <input
