@@ -3,16 +3,20 @@
     <textarea
       v-if="isTextarea"
       class="textarea"
+      :ref="name"
       :placeholder="placeholder"
       v-model="response[name].value"
+      v-on:keyup.enter="next"
     />
     <label class="label" v-else>
       <input
+        :ref="name"
         :id="name"
         class="input"
         :placeholder="placeholder"
         :type="type"
         v-model="response[name].value"
+        v-on:keyup.enter="next"
       />
       <span v-if="showLabel">{{placeholder}}</span>
     </label>
@@ -26,8 +30,13 @@ export default {
     response: Object,
     type: String,
     name: String,
+    placeholder: String,
     half: Boolean,
-    placeholder: String
+    autofocus: Boolean,
+    next: Function
+  },
+  mounted() { if (this.autofocus) {
+    this.$refs[this.name].focus() }
   },
   computed: {
     error() { return this.response[this.name].error },

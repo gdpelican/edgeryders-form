@@ -19,6 +19,7 @@
         "type": "textarea",
         "placeholder": "write here...",
         "required": true,
+        "autofocus": true,
         "error": "Please write a response!"
       }]
     }
@@ -67,6 +68,7 @@
       "placeholder": "Name/nickname",
       "half": true,
       "required": true,
+      "autofocus": true,
       "error": "please enter your name"
     }, {
       "name": "age",

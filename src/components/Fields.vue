@@ -4,6 +4,7 @@
       v-for="field in fields"
       :key="field.name"
       :response="response"
+      :next="next"
       v-bind="field"
     />
   </ul>
@@ -13,7 +14,7 @@
 import Field from './Field'
 
 export default {
-  props: { response: Object, fields: Array },
+  props: { response: Object, fields: Array, next: Function },
   components: { Field }
 }
 </script>

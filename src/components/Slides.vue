@@ -2,7 +2,7 @@
   <div class="slides">
     <div class="content">
       <Title class="even" v-bind="slide" />
-      <Body class="even" v-bind="slide" :response="response" />
+      <Body class="even" v-bind="slide" :response="response" :next="next" />
       <Cancel :go="go" />
     </div>
     <Navigation
@@ -24,16 +24,14 @@ export default {
   props: { go: Function, slides: Array },
   data() { return { form: {}, currentIndex: 0 } },
   created() {
-    this.slides
-      .filter(s => s.index)
-      .forEach(({ index, fields }) => {
-        this.$set(this.form, index, {})
-        fields.forEach(({ name }) => {
-          this.$set(this.form[index], name, {})
-          this.$set(this.form[index][name], 'value', '')
-          this.$set(this.form[index][name], 'error', '')
-        })
+    this.slides.filter(s => s.index).forEach(({ index, fields }) => {
+      this.$set(this.form, index, {})
+      fields.forEach(({ name }) => {
+        this.$set(this.form[index], name, {})
+        this.$set(this.form[index][name], 'value', '')
+        this.$set(this.form[index][name], 'error', '')
       })
+    })
   },
   computed: {
     slide() { return this.slides[this.currentIndex] },
@@ -66,10 +64,7 @@ export default {
         this.response[name].error = (required && !this.response[name].value) ? error : null
       ))
     },
-    submit() {
-      console.log(this.form)
-      return new Promise(() => {})
-    }
+    submit() { return Promise.resolve() }
   },
   components: { Title, Body, Cancel, Navigation }
 }
