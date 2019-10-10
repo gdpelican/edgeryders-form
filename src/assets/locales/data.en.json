@@ -1,5 +1,10 @@
 {
-  "title": "Rethinking retirement",
+  "brand": {
+    "title": "Rethinking retirement",
+    "logoSrc": "",
+    "imageSrc": "",
+    "beginText": "BEGIN"
+  },
   "defaults": {
     "title": "Q{{index}}",
     "backText": "BACK",
@@ -64,7 +69,8 @@
       "type": "checkbox",
       "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas est tellus, malesuada et finibus eget, faucibus atortor. Pellentesque eros velit, ullamcorper vitae tempor sitamet, tincidunt at erat"
     }],
-    "nextText": "SEND"
+    "nextText": "SEND",
+    "submit": true
   }, {
     "type": "info",
     "title": "Well done!",

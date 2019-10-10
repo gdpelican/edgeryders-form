@@ -3,7 +3,7 @@
     <div class="content">
       <Title class="even" v-bind="slide" />
       <Body class="even" v-bind="slide" />
-      <Cancel v-if="canCancel" :go="go" />
+      <Cancel :go="go" />
     </div>
     <Navigation
       :back="back()"
@@ -25,8 +25,7 @@ export default {
   data: () => ({ currentIndex: 0 }),
   computed: {
     slide() { return Object.assign({}, this.defaults, this.slides[this.currentIndex]) },
-    maxIndex() { return Math.max(...this.slides.map(slide => slide.index || 0)) },
-    canCancel() { return this.currentIndex > 0 }
+    maxIndex() { return Math.max(...this.slides.map(slide => slide.index || 0)) }
   },
   methods: {
     back() {
@@ -35,12 +34,13 @@ export default {
         : null
     },
     next() {
-      return this.currentIndex < this.slides.length - 1
-        ? () => this.currentIndex += 1
-        : this.submit
+      return this.slide.submit
+        ? () => this.submit()
+        : () => this.currentIndex += 1
     },
     submit() {
-      // console.log('hello!')
+      console.log('hello!')
+      this.currentIndex += 1
     }
   },
   components: { Title, Body, Cancel, Navigation },

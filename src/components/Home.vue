@@ -4,8 +4,8 @@
       <Title v-bind="slide" />
     </div>
     <div class="bottom secondary-background">
-      <div>(image)</div>
-      <Navigation nextText="BEGIN" :next="next" />
+      <img :src="brand.imageSrc" :alt="brand.title" />
+      <Navigation :nextText="brand.beginText" :next="next" />
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import Title from './slideComponents/Title.vue'
 import Navigation from './slideComponents/Navigation.vue'
 
 export default {
-  props: { go: Function, slide: Object },
+  props: { brand: Object, go: Function, slide: Object },
   computed: {
     next() { return () => this.go('slides') }
   },
