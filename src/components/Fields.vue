@@ -1,19 +1,27 @@
 <template>
-  <ul>
-    <li :class="classFor(field)" v-for="field in fields" :key="field.name">
-      <input :id="field.name" class="input" v-bind="field" v-model="field.response" />
-      <label v-if="showLabel(field)" :for="field.name">{{field.placeholder}}</label>
-    </li>
+  <ul v-if="fields">
+    <Field
+      v-for="field in fields"
+      :key="field.name"
+      :errors="errors"
+      :response="response"
+      :index="index"
+      v-bind="field"
+    />
   </ul>
 </template>
 
 <script>
+import Field from './Field'
+
 export default {
-  props: { fields: Array },
-  methods: {
-    classFor(field) { return field.half ? `half ${field.type}` : `full ${field.type}` },
-    showLabel(field) { return field.type === 'checkbox' }
-  }
+  props: {
+    response: Object,
+    errors: Object,
+    index: Number,
+    fields: Array
+  },
+  components: { Field }
 }
 </script>
 
@@ -25,6 +33,15 @@ export default {
 
   .half:nth-child(2) .input {
     border-left: 1px solid;
+  }
+
+  .textarea {
+    padding: 0.4rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    border-radius: 2px;
+    min-height: 10rem;
   }
 
   .input {
@@ -45,5 +62,9 @@ export default {
 
   .input[type=checkbox] {
     width: auto;
+  }
+
+  .error {
+    color: red;
   }
 </style>

@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Title from './slideComponents/Title.vue'
-import Navigation from './slideComponents/Navigation.vue'
+import Title from './Title.vue'
+import Navigation from './Navigation.vue'
 
 export default {
   props: { brand: Object, go: Function, slide: Object },

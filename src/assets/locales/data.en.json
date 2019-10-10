@@ -9,7 +9,7 @@
     "title": "Q{{index}}",
     "backText": "BACK",
     "nextText": "NEXT",
-    "placeholder": "write here..."
+    "messages": { "empty": "Please enter a response!" }
   },
   "slides": [{
     "type": "info",
@@ -23,29 +23,66 @@
   }, {
     "type": "question",
     "index": 1,
-    "body": "We don't seem to discuss retirement much with others.<br/>How much do you think about your own retirement?<br/>What do you think about? And what do you avoid thinking about?"
+    "body": "We don't seem to discuss retirement much with others.<br/>How much do you think about your own retirement?<br/>What do you think about? And what do you avoid thinking about?",
+    "fields": [{
+      "name": "message",
+      "type": "textarea",
+      "placeholder": "write here...",
+      "required": true
+    }]
   }, {
     "type": "question",
     "index": 2,
-    "body": "How about work, hobbies, family life, leisure, pleasure...<br/><br/>Which activities from your present life would you like to keep doing? Which things would you like to never do again?"
+    "body": "How about work, hobbies, family life, leisure, pleasure...<br/><br/>Which activities from your present life would you like to keep doing? Which things would you like to never do again?",
+    "fields": [{
+      "name": "message",
+      "type": "textarea",
+      "placeholder": "write here...",
+      "required": true
+    }]
   }, {
     "type": "question",
     "index": 3,
-    "body": "Great, now that you've chosen what stays and what to leave behind - start to imagine your future self.<br/>The 'dream you'. How do you get there? Which new skills and what knowledge do you want to acquire?"
+    "body": "Great, now that you've chosen what stays and what to leave behind - start to imagine your future self.<br/>The 'dream you'. How do you get there? Which new skills and what knowledge do you want to acquire?",
+    "fields": [{
+      "name": "message",
+      "type": "textarea",
+      "placeholder": "write here...",
+      "required": true
+    }]
   }, {
     "type": "question",
     "index": 4,
-    "body": "Imagine your housing situation and the people around you (or their absence). Who are you surrounded by in your retirement?<br />Where and how would you like to live?"
+    "body": "Imagine your housing situation and the people around you (or their absence). Who are you surrounded by in your retirement?<br />Where and how would you like to live?",
+    "fields": [{
+      "name": "message",
+      "type": "textarea",
+      "placeholder": "write here...",
+      "required": true
+    }]
   }, {
     "type": "question",
     "index": 5,
-    "body": "If you know people who have retired, was there something to learn from their experience and approach? Could you share their impressions?"
+    "body": "If you know people who have retired, was there something to learn from their experience and approach? Could you share their impressions?",
+    "fields": [{
+      "name": "message",
+      "type": "textarea",
+      "placeholder": "write here...",
+      "required": true
+    }]
   }, {
     "type": "question",
     "index": 6,
-    "body": "How do you imagine sustaining yourself financially?<br/>Maybe you have a plan, a tip, or an idea, that you would like to share?"
+    "body": "How do you imagine sustaining yourself financially?<br/>Maybe you have a plan, a tip, or an idea, that you would like to share?",
+    "fields": [{
+      "name": "message",
+      "type": "textarea",
+      "placeholder": "write here...",
+      "required": true
+    }]
   }, {
     "type": "inputs",
+    "index": 7,
     "title": "The last little bit!",
     "body": "These questions will help make the research even more exact.",
     "fields": [{
