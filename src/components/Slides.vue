@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import Title      from './Title.vue'
-import Body       from './Body.vue'
-import Cancel     from './Cancel.vue'
-import Navigation from './Navigation.vue'
+import Title      from './Title'
+import Body       from './Body'
+import Cancel     from './Cancel'
+import Navigation from './Navigation'
 
 export default {
   props: { go: Function, slides: Array },

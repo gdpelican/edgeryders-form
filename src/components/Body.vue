@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Fields from './Fields.vue'
+import Fields from './Fields'
 
 export default {
   props: { body: String, type: String },
