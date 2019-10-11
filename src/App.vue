@@ -1,21 +1,23 @@
 <template>
   <Home v-if="on('home')" :brand="brand" :slide="initialSlide" :go="go" />
-  <Slides v-else-if="on('slides')" :slides="slides" :go="go" />
+  <Slides v-else-if="on('slides')" :submit="submit" :slides="slides" :go="go" />
 </template>
 
 <script>
 import Home from './components/Home.vue'
 import Slides from './components/Slides.vue'
 import data from './assets/locales/data.en.json'
+import submit from './helpers/discourse'
 
-const { slides, defaults, brand } = data
+const { brand, slides, defaults, discourse } = data
 
 export default {
   name: 'edgeryders-form',
   data: () => ({
     page: 'home',
     brand,
-    slides: data.slides.map(s => Object.assign({}, defaults[s.type], s))
+    slides: slides.map(s => Object.assign({}, defaults[s.type], s)),
+    submit: submit(discourse)
   }),
   methods: {
     go(page) { this.page = page },

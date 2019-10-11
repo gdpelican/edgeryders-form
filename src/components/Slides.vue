@@ -25,11 +25,11 @@ import Cancel     from './Cancel'
 import Navigation from './Navigation'
 
 export default {
-  props: { go: Function, slides: Array },
+  props: { go: Function, slides: Array, submit: Function },
   data() { return { form: {}, currentIndex: 0 } },
   created() {
-    this.slides.filter(s => s.index).forEach(({ index, fields }) => {
-      this.$set(this.form, index, {})
+    this.slides.filter(s => s.index).forEach(({ index, body, fields }) => {
+      this.$set(this.form, index, { body })
       fields.forEach(({ name }) => {
         this.$set(this.form[index], name, {})
         this.$set(this.form[index][name], 'value', '')
@@ -67,8 +67,7 @@ export default {
       fields.forEach(({ name, required, error }) => (
         this.response[name].error = (required && !this.response[name].value) ? error : null
       ))
-    },
-    submit() { return Promise.resolve() }
+    }
   },
   components: { Title, Body, Fields, Cancel, Navigation }
 }
