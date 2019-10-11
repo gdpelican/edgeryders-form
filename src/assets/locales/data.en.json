@@ -4,7 +4,7 @@
       "user": "https://communities.edgeryders.eu/multisite_account.json",
       "topic": ""
     },
-    "auth_key": "<desconocido>"
+    "authKey": "<desconocido>"
   },
   "brand": {
     "title": "Rethinking retirement",
@@ -32,39 +32,6 @@
     }
   },
   "slides": [{
-    "type": "info",
-    "title": "Hello, visitor!",
-    "subtitle": "Welcome to the Academy of Life - an experiment in rethinking retirement",
-    "body": "This ethnographic research is part of a global conversation in which participants imagine how they want to spend their elderly years. The collected data is anonymous, collected on an open source platform. You can see, edit or delete it by visiting a link we will send you as confirmation. You can finish this questionnaire at any point - but the further you get, the more concrete your vision of retirement will become."
-  }, {
-    "type": "info",
-    "title": "Ready?",
-    "body": "Imagine retirement as a period when you don't need to go to work anymore. You don't need to be \"retired\", either. The division between retirement and work doesn't exist, you create the balance."
-  }, {
-    "type": "form",
-    "index": 1,
-    "body": "We don't seem to discuss retirement much with others. How much do you think about your own retirement? What do you think about? And what do you avoid thinking about?"
-  }, {
-    "type": "form",
-    "index": 2,
-    "body": "How about work, hobbies, family life, leisure, pleasure... Which activities from your present life would you like to keep doing? Which things would you like to never do again?"
-  }, {
-    "type": "form",
-    "index": 3,
-    "body": "Great, now that you've chosen what stays and what to leave behind - start to imagine your future self. The 'dream you'. How do you get there? Which new skills and what knowledge do you want to acquire?"
-  }, {
-    "type": "form",
-    "index": 4,
-    "body": "Imagine your housing situation and the people around you (or their absence). Who are you surrounded by in your retirement?<br />Where and how would you like to live?"
-  }, {
-    "type": "form",
-    "index": 5,
-    "body": "If you know people who have retired, was there something to learn from their experience and approach? Could you share their impressions?"
-  }, {
-    "type": "form",
-    "index": 6,
-    "body": "How do you imagine sustaining yourself financially? Maybe you have a plan, a tip, or an idea, that you would like to share?"
-  }, {
     "type": "form",
     "index": 7,
     "title": "The last little bit!",

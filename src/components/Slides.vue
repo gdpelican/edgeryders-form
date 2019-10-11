@@ -5,6 +5,7 @@
       <div class="even">
         <Body v-bind="slide" :response="response" :next="next" />
         <Fields v-bind="slide" :response="response" :next="next" />
+        <p v-if="error" class="error">{{error}}</p>
       </div>
       <Cancel :go="go" />
     </div>
@@ -26,7 +27,7 @@ import Navigation from './Navigation'
 
 export default {
   props: { go: Function, slides: Array, submit: Function },
-  data() { return { form: {}, currentIndex: 0 } },
+  data() { return { form: {}, currentIndex: 0, error: null } },
   created() {
     this.slides.filter(s => s.index).forEach(({ index, body, fields }) => {
       this.$set(this.form, index, { body })
@@ -53,13 +54,14 @@ export default {
         if (!this.isValid) { return }
 
         this.slide.submit
-          ? this.submit().then(this.proceed)
+          ? this.submit(this.form).then(this.proceed, this.fail)
           : this.proceed()
       }
     },
   },
   methods: {
     proceed() { this.currentIndex += 1 },
+    fail() { this.error = 'wark' },
     validate() {
       const { index, fields } = this.slide
       if (!index || !fields) { return {} }
@@ -87,5 +89,9 @@ export default {
   .even {
     flex-basis: 50%;
     margin-right: 2rem;
+  }
+
+  .error {
+    color: red;
   }
 </style>

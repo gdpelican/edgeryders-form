@@ -1,5 +1,5 @@
 const createUser = ({ form, url, authKey }) => (
-  fetch(url, {
+  fetch(`${url}?${Object.entries({
     email: '',
     username: generateUsername(form),
     password: generatePassword(form),
@@ -8,7 +8,7 @@ const createUser = ({ form, url, authKey }) => (
     edgeryders_research_content: true,
     requested_api_keys: ['edgeryders.eu'],
     auth_key: authKey
-  })
+  }).map(v => v.join('=')).join('&')}`)
 )
 
 const createTopic = ({ form, url }) => (
