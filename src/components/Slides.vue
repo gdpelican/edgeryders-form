@@ -2,7 +2,10 @@
   <div class="slides">
     <div class="content">
       <Title class="even" v-bind="slide" />
-      <Body class="even" v-bind="slide" :response="response" :next="next" />
+      <div class="even">
+        <Body v-bind="slide" :response="response" :next="next" />
+        <Fields v-bind="slide" :response="response" :next="next" />
+      </div>
       <Cancel :go="go" />
     </div>
     <Navigation
@@ -17,6 +20,7 @@
 <script>
 import Title      from './Title'
 import Body       from './Body'
+import Fields     from './Fields'
 import Cancel     from './Cancel'
 import Navigation from './Navigation'
 
@@ -66,7 +70,7 @@ export default {
     },
     submit() { return Promise.resolve() }
   },
-  components: { Title, Body, Cancel, Navigation }
+  components: { Title, Body, Fields, Cancel, Navigation }
 }
 </script>
 

@@ -1,16 +1,10 @@
 <template>
-  <div>
-    <p class="body" v-if="body" v-html="body" />
-    <Fields v-bind="$attrs" />
-  </div>
+  <p class="body" v-if="body" v-html="body" />
 </template>
 
 <script>
-import Fields from './Fields'
-
 export default {
-  props: { body: String, type: String },
-  components: { Fields }
+  props: { body: String },
 }
 </script>
 
