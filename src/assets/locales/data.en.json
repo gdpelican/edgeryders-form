@@ -1,14 +1,4 @@
 {
-  "discourse": {
-    "urls": {
-      "user": "https://communities.edgeryders.eu/multisite_account.json",
-      "topic": "https://edgeryders.eu/posts.json"
-    },
-    "keys": {
-      "user": "...",
-      "topic": "..."
-    }
-  },
   "brand": {
     "title": "Rethinking retirement",
     "logoSrc": "/favicon.ico",

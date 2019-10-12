@@ -1,23 +1,21 @@
 import passwordGenerator from 'secure-random-string'
 
-const createUser = ({ form, url, key }) => (
-  fetch(`${url}?${Object.entries({
+const createUser = form => (
+  fetch(`${process.env.DISCOURSE_USER_URL}?${Object.entries({
     accepted_gtc: true,
     accepted_privacy_policy: true,
     edgeryders_research_content: true,
     requested_api_keys: ['edgeryders.eu'],
-    auth_key: key,
+    auth_key: process.env.DISCOURSE_USER_KEY,
     ...generateForm(form)
-  }).map(v => v.join('=')).join('&')}`, { mode: 'no-cors' })
+  }).map(v => v.join('=')).join('&')}`)
 )
 
-const createTopic = ({ form, url, key }) => (
-  fetch(url, {
+const createTopic = form => (
+  fetch(process.env.DISCOURSE_TOPIC_URL, {
     method: 'post',
-    mode: 'no-cors',
-    credentials: 'include',
     headers: {
-      'Api-Key': key,
+      'Api-Key': process.env.DISCOURSE_TOPIC_KEY,
       'Api-Username': 'gdpelican', // TODO
       'Content-type': 'application/json'
     },
@@ -50,10 +48,8 @@ const formatResponse = form => (
   )).flat().join('\n\n')
 )
 
-export default ({ urls, keys }) => (
-  form => (
-    createUser({ form, url: urls.user, key: keys.user }).then(() => (
-      createTopic({ form, url: urls.topic, key: keys.topic })
-    ))
-  )
+export default form => (
+  createUser(form).then(() => (
+    createTopic(form)
+  ))
 )

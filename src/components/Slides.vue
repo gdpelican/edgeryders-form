@@ -24,9 +24,10 @@ import Body       from './Body'
 import Fields     from './Fields'
 import Cancel     from './Cancel'
 import Navigation from './Navigation'
+import submit     from '../helpers/discourse'
 
 export default {
-  props: { go: Function, slides: Array, submit: Function },
+  props: { go: Function, slides: Array },
   data() { return { form: {}, currentIndex: 0, error: null } },
   created() {
     this.slides.filter(s => s.index).forEach(({ index, body, fields }) => {
@@ -54,7 +55,7 @@ export default {
         if (!this.isValid) { return }
 
         this.slide.submit
-          ? this.submit(this.form).then(this.proceed, this.fail)
+          ? submit(this.form).then(this.proceed, this.fail)
           : this.proceed()
       }
     },
