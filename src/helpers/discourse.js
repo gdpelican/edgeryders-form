@@ -1,21 +1,21 @@
 import passwordGenerator from 'secure-random-string'
 
 const createUser = form => (
-  fetch(`${process.env.DISCOURSE_USER_URL}?${Object.entries({
+  fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
     accepted_gtc: true,
     accepted_privacy_policy: true,
     edgeryders_research_content: true,
     requested_api_keys: ['edgeryders.eu'],
-    auth_key: process.env.DISCOURSE_USER_KEY,
+    auth_key: process.env.VUE_APP_DISCOURSE_USER_KEY,
     ...generateForm(form)
   }).map(v => v.join('=')).join('&')}`)
 )
 
 const createTopic = form => (
-  fetch(process.env.DISCOURSE_TOPIC_URL, {
+  fetch(process.env.VUE_APP_DISCOURSE_TOPIC_URL, {
     method: 'post',
     headers: {
-      'Api-Key': process.env.DISCOURSE_TOPIC_KEY,
+      'Api-Key': process.env.VUE_APP_DISCOURSE_TOPIC_KEY,
       'Api-Username': 'gdpelican', // TODO
       'Content-type': 'application/json'
     },
@@ -49,7 +49,8 @@ const formatResponse = form => (
 )
 
 export default form => (
-  createUser(form).then(() => (
-    createTopic(form)
-  ))
+  createUser(form).then(
+    () => createTopic(form),
+    console.log
+  )
 )
