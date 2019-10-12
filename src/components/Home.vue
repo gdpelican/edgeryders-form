@@ -4,7 +4,7 @@
       <Title v-bind="slide" />
     </div>
     <div class="bottom secondary-background">
-      <img :src="brand.imageSrc" :alt="brand.title" />
+      <img class="logo" :src="brand.imageSrc" :alt="brand.title" />
       <Navigation :nextText="brand.beginText" :next="next" />
     </div>
   </div>
@@ -47,5 +47,9 @@ export default {
     align-items: flex-end;
     justify-content: space-between;
     color: white;
+  }
+
+  .logo {
+    max-width: 20rem;
   }
 </style>

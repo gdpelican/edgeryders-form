@@ -1,29 +1,45 @@
-const createUser = ({ form, url, authKey }) => (
+import passwordGenerator from 'secure-random-string'
+
+const createUser = ({ form, url, key }) => (
   fetch(`${url}?${Object.entries({
-    email: '',
-    username: generateUsername(form),
-    password: generatePassword(form),
     accepted_gtc: true,
     accepted_privacy_policy: true,
     edgeryders_research_content: true,
     requested_api_keys: ['edgeryders.eu'],
-    auth_key: authKey
-  }).map(v => v.join('=')).join('&')}`)
+    auth_key: key,
+    ...generateForm(form)
+  }).map(v => v.join('=')).join('&')}`, { mode: 'no-cors' })
 )
 
-const createTopic = ({ form, url }) => (
-  fetch(url, { body: format(form) })
+const createTopic = ({ form, url, key }) => (
+  fetch(url, {
+    method: 'post',
+    mode: 'no-cors',
+    credentials: 'include',
+    headers: {
+      'Api-Key': key,
+      'Api-Username': 'gdpelican', // TODO
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      title: `Rethinking retirement - response by ${formField(form, 'name')}`,
+      category: 343, // TODO
+      raw: formatResponse(form)
+    })
+  })
 )
 
-const generateUsername = form => (
-  form[0]
+const generateForm = form => ({
+  email: formField(form, 'email'),
+  username: 'gdpelican_test', //TODO
+  password: passwordGenerator({ length: 15 })
+})
+
+const formField = (form, field) => (
+  Object.values(form).map(f => (f[field] || {}).value)
 )
 
-const generatePassword = form => (
-  form[0]
-)
-
-const format = form => (
+const formatResponse = form => (
   Object.values(form).map(({ body, ...fields }) => (
     [
       `**${body}**`,
@@ -34,10 +50,10 @@ const format = form => (
   )).flat().join('\n\n')
 )
 
-export default ({ urls: { user, topic }, authKey }) => (
+export default ({ urls, keys }) => (
   form => (
-    createUser({ form, url: user, authKey }).then(() => (
-      createTopic({ form, url: topic })
+    createUser({ form, url: urls.user, key: keys.user }).then(() => (
+      createTopic({ form, url: urls.topic, key: keys.topic })
     ))
   )
 )
