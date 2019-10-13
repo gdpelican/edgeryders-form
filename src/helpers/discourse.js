@@ -1,4 +1,4 @@
-import passwordGenerator from 'secure-random-string'
+import generatePassword from 'secure-random-string'
 
 const createUser = form => (
   fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
@@ -7,37 +7,35 @@ const createUser = form => (
     edgeryders_research_content: true,
     requested_api_keys: ['edgeryders.eu'],
     auth_key: process.env.VUE_APP_DISCOURSE_USER_KEY,
-    ...generateForm(form)
-  }).map(v => v.join('=')).join('&')}`)
+    email: formField(form, 'email'),
+    username: generateUsername(form),
+    password: generatePassword({ length: 15 })
+  }).map(pair => pair.map(encodeURIComponent).join('=')).join('&')}`)
 )
 
-const createTopic = form => (
+const createTopic = form, key => (
   fetch(process.env.VUE_APP_DISCOURSE_TOPIC_URL, {
     method: 'post',
-    headers: {
-      'Api-Key': process.env.VUE_APP_DISCOURSE_TOPIC_KEY,
-      'Api-Username': 'gdpelican', // TODO
-      'Content-type': 'application/json'
-    },
+    headers: { 'Api-Key': key, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      title: `Rethinking retirement - response by ${formField(form, 'name')}`,
-      category: 343, // TODO
-      raw: formatResponse(form)
+      title: `Rethinking retirement - response by ${formField(form, 'email')}`,
+      raw: generateResponse(form)
     })
   })
 )
-
-const generateForm = form => ({
-  email: formField(form, 'email'),
-  username: 'gdpelican_test', //TODO
-  password: passwordGenerator({ length: 15 })
-})
 
 const formField = (form, field) => (
   Object.values(form).map(f => (f[field] || {}).value)
 )
 
-const formatResponse = form => (
+const generateUsername = form => (
+  [
+    formField(form, 'email').split('@')[0],
+    Math.ceil(Math.random() * 100)
+  ].join('_')
+)
+
+const generateResponse = form => (
   Object.values(form).map(({ body, ...fields }) => (
     [
       `**${body}**`,
@@ -49,8 +47,5 @@ const formatResponse = form => (
 )
 
 export default form => (
-  createUser(form).then(
-    () => createTopic(form),
-    console.log
-  )
+  createTopic(form, process.env.VUE_APP_DISCOURSE_TOPIC_KEY)
 )
