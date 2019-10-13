@@ -1,7 +1,7 @@
 import generatePassword from 'secure-random-string'
 
 const createUser = form => (
-  fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
+  true || fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
     accepted_gtc: true,
     accepted_privacy_policy: true,
     edgeryders_research_content: true,
@@ -13,7 +13,7 @@ const createUser = form => (
   }).map(pair => pair.map(encodeURIComponent).join('=')).join('&')}`)
 )
 
-const createTopic = form, key => (
+const createTopic = (form, key) => (
   fetch(process.env.VUE_APP_DISCOURSE_TOPIC_URL, {
     method: 'post',
     headers: { 'Api-Key': key, 'Content-Type': 'application/json' },
@@ -47,5 +47,6 @@ const generateResponse = form => (
 )
 
 export default form => (
+  createUser(form, process.env.VUE_APP_DISCOURSE_USER_KEY) ||
   createTopic(form, process.env.VUE_APP_DISCOURSE_TOPIC_KEY)
 )
