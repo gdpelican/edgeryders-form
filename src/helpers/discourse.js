@@ -28,7 +28,7 @@ const createTopic = (form, apiKey) => (
 const handleResponse = response => (
   response.ok
     ? response.json()
-    : response.json().then(({ errors }) => Project.reject(errors))
+    : response.json().then(({ errors }) => Promise.reject(errors))
 )
 
 const formField = (form, field) => (
