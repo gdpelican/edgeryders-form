@@ -36,10 +36,6 @@ export default {
     flex-grow: 1;
   }
 
-  .top-content {
-    max-width: 20rem;
-  }
-
   .bottom {
     padding: 3rem;
     display: flex;
