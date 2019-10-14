@@ -92,8 +92,4 @@ export default {
     flex-basis: 50%;
     margin-right: 2rem;
   }
-
-  .error {
-    color: red;
-  }
 </style>
