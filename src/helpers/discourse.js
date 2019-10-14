@@ -10,8 +10,7 @@ const createUser = (form, authKey) => (
     email: formField(form, 'email'),
     username: generateUsername(form),
     password: generatePassword({ length: 15 })
-  }).map(pair => pair.map(encodeURIComponent).join('=')).join('&')}`)
-    .then(handleResponse)
+  }).map(pair => pair.map(encodeURIComponent).join('=')).join('&')}`).then(handleResponse)
 )
 
 const createTopic = (form, apiKey) => (
