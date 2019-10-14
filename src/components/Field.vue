@@ -21,11 +21,13 @@
       />
       <span v-if="showLabel">{{placeholder}}</span>
     </label>
-    <p v-if="error" class="error">{{error}}</p>
+    <Error :error="error" />
   </li>
 </template>
 
 <script>
+import Error from './Error'
+
 export default {
   props: {
     response: Object,
@@ -44,7 +46,8 @@ export default {
     klass() { return `${this.half ? 'half' : 'full'} ${this.type}` },
     isTextarea() { return this.type === 'textarea' },
     showLabel() { return this.type === 'checkbox' }
-  }
+  },
+  components: { Error }
 }
 </script>
 
@@ -84,9 +87,5 @@ export default {
       width: auto;
       margin-right: 1rem;
     }
-  }
-
-  .error {
-    color: red;
   }
 </style>

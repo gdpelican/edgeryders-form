@@ -5,7 +5,7 @@
       <div class="even">
         <Body v-bind="slide" :response="response" :next="next" />
         <Fields v-bind="slide" :response="response" :next="next" />
-        <p v-if="error" class="error">{{error}}</p>
+        <Error :error="error" />
       </div>
       <Cancel :go="go" />
     </div>
@@ -22,6 +22,7 @@
 import Title      from './Title'
 import Body       from './Body'
 import Fields     from './Fields'
+import Error      from './Error'
 import Cancel     from './Cancel'
 import Navigation from './Navigation'
 import submit     from '../helpers/discourse'
@@ -72,7 +73,7 @@ export default {
       ))
     }
   },
-  components: { Title, Body, Fields, Cancel, Navigation }
+  components: { Title, Body, Fields, Error, Cancel, Navigation }
 }
 </script>
 
