@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     allowBack() { return this.back && this.backText },
-    allowNextLink() { return this.nextText && this.nextUrl },
+    allowNextLink() { return this.next && this.nextText && this.nextUrl },
     allowNextButton() { return this.next && this.nextText && !this.nextUrl },
     dots() { return [...Array(this.maxIndex).keys()] }
   }

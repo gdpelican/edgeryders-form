@@ -19,7 +19,7 @@
         v-model="response[name].value"
         v-on:keyup.enter="next"
       />
-      <span v-if="showLabel">{{placeholder}}</span>
+      <span v-if="isCheckbox">{{placeholder}}</span>
     </label>
     <Error :error="error" />
   </li>
@@ -38,14 +38,14 @@ export default {
     autofocus: Boolean,
     next: Function
   },
-  mounted() { if (this.autofocus) {
-    this.$refs[this.name].focus() }
+  mounted() {
+    if (this.autofocus) { this.$refs[this.name].focus() }
   },
   computed: {
     error() { return this.response[this.name].error },
     klass() { return `${this.half ? 'half' : 'full'} ${this.type}` },
     isTextarea() { return this.type === 'textarea' },
-    showLabel() { return this.type === 'checkbox' }
+    isCheckbox() { return this.type === 'checkbox' }
   },
   components: { Error }
 }
