@@ -41,36 +41,29 @@ export default {
     })
   },
   computed: {
-    slide() { return this.slides[this.currentIndex] },
+    slide()    { return this.slides[this.currentIndex] },
     response() { return this.form[this.slide.index] || {} },
     maxIndex() { return Math.max(...this.slides.map(slide => slide.index || 0)) },
-    isValid() { return Object.values(this.response).every(({ error }) => !error) },
-    back() {
-      return this.currentIndex > 0
-        ? () => this.currentIndex -= 1
-        : null
-    },
-    next() {
-      return () => {
-        this.validate()
-        if (!this.isValid) { return }
-
-        this.slide.submit
-          ? submit(this.form).then(this.proceed, this.fail)
-          : this.proceed()
-      }
-    },
+    back()     { return this.currentIndex > 0 ? this.retreat : null },
+    next()     { return () => (
+      this.slide.submit
+        ? this.validate() && submit(this.form).then(this.proceed, this.fail)
+        : this.proceed()
+    )}
   },
   methods: {
+    retreat() { this.currentIndex -= 1 },
     proceed() { this.currentIndex += 1 },
     fail(failure) { this.error = failure },
     validate() {
       const { index, fields } = this.slide
-      if (!index || !fields) { return {} }
+      if (!index || !fields) { return true }
 
       fields.forEach(({ name, required, error }) => (
         this.response[name].error = (required && !this.response[name].value) ? error : null
       ))
+
+      return Object.values(this.response).every(({ error }) => !error)
     }
   },
   components: { Title, Body, Fields, Error, Cancel, Navigation }
@@ -86,7 +79,9 @@ export default {
     justify-content: space-between;
   }
 
-  .content { display: flex; }
+  .content {
+    display: flex;
+  }
 
   .even {
     flex-basis: 50%;

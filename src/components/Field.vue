@@ -82,7 +82,10 @@ export default {
     margin: 2rem 0;
     display: block;
 
-    .label { display: flex; }
+    .label {
+      display: flex;
+    }
+
     .input {
       width: auto;
       margin-right: 1rem;
