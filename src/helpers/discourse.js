@@ -1,27 +1,34 @@
 import generatePassword from 'secure-random-string'
 
-const createUser = form => (
-  true || fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
+const createUser = (form, authKey) => (
+  fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
     accepted_gtc: true,
     accepted_privacy_policy: true,
     edgeryders_research_content: true,
-    requested_api_keys: ['edgeryders.eu'],
-    auth_key: process.env.VUE_APP_DISCOURSE_USER_KEY,
+    requested_api_keys: [process.env.VUE_APP_DISCOURSE_DOMAIN],
+    auth_key: authKey,
     email: formField(form, 'email'),
     username: generateUsername(form),
     password: generatePassword({ length: 15 })
   }).map(pair => pair.map(encodeURIComponent).join('=')).join('&')}`)
+    .then(handleResponse)
 )
 
-const createTopic = (form, key) => (
+const createTopic = (form, apiKey) => (
   fetch(process.env.VUE_APP_DISCOURSE_TOPIC_URL, {
     method: 'post',
-    headers: { 'Api-Key': key, 'Content-Type': 'application/json' },
+    headers: { 'Api-Key': apiKey, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       title: `Rethinking retirement - response by ${formField(form, 'email')}`,
       raw: generateResponse(form)
     })
-  })
+  }).then(handleResponse)
+)
+
+const handleResponse = response => (
+  response.ok
+    ? response.json()
+    : response.json().then(({ errors }) => Project.reject(errors))
 )
 
 const formField = (form, field) => (
@@ -40,7 +47,7 @@ const generateResponse = form => (
     [
       (omitBody ? '' : `**${body}**`),
       Object.entries(fields)
-            .filter(([_, { settings: { omit } }]) => !omit)
+            .filter(([, { settings: { omit } }]) => !omit)
             .map(([field, { value }]) => [(omitFields ? '' : `**${field}:** `), value].join(''))
             .join('\n')
     ]
@@ -48,6 +55,7 @@ const generateResponse = form => (
 )
 
 export default form => (
-  // createUser(form, process.env.VUE_APP_DISCOURSE_USER_KEY) ||
-  createTopic(form, process.env.VUE_APP_DISCOURSE_TOPIC_KEY)
+  createUser(form, process.env.VUE_APP_DISCOURSE_AUTH_KEY).then(json => (
+    createTopic(form, json.api_keys[0].key)
+  ))
 )

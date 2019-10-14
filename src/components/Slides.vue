@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     proceed() { this.currentIndex += 1 },
-    fail() { this.error = 'wark' },
+    fail(failure) { this.error = failure },
     validate() {
       const { index, fields } = this.slide
       if (!index || !fields) { return {} }
