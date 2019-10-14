@@ -36,12 +36,13 @@ const generateUsername = form => (
 )
 
 const generateResponse = form => (
-  Object.values(form).map(({ body, ...fields }) => (
+  Object.values(form).map(({ body, settings: { omitBody, omitFields }, ...fields }) => (
     [
-      `**${body}**`,
-      Object.entries(fields).map(([field, { value }]) => (
-        `${field === 'message' ? '' : `**${field}:** `}${value}`
-      )).join('\n')
+      (omitBody ? '' : `**${body}**`),
+      Object.entries(fields)
+            .filter(([_, { settings: { omit } }]) => !omit)
+            .map(([field, { value }]) => [(omitFields ? '' : `**${field}:** `), value].join(''))
+            .join('\n')
     ]
   )).flat().join('\n\n')
 )

@@ -30,10 +30,10 @@ export default {
   props: { go: Function, slides: Array },
   data() { return { form: {}, currentIndex: 0, error: null } },
   created() {
-    this.slides.filter(s => s.index).forEach(({ index, body, fields }) => {
-      this.$set(this.form, index, { body })
-      fields.forEach(({ name }) => {
-        this.$set(this.form[index], name, {})
+    this.slides.filter(s => s.index).forEach(({ index, body, settings, fields }) => {
+      this.$set(this.form, index, { body, settings })
+      fields.forEach(({ name, settings = {} }) => {
+        this.$set(this.form[index], name, { settings })
         this.$set(this.form[index][name], 'value', '')
         this.$set(this.form[index][name], 'error', '')
       })

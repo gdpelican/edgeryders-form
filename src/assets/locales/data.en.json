@@ -21,7 +21,8 @@
         "required": true,
         "autofocus": true,
         "error": "Please write a response!"
-      }]
+      }],
+      "settings": { "omitFields": true }
     }
   },
   "slides": [{
@@ -86,10 +87,12 @@
       "type": "checkbox",
       "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas est tellus, malesuada et finibus eget, faucibus atortor. Pellentesque eros velit, ullamcorper vitae tempor sitamet, tincidunt at erat",
       "required": true,
-      "error": "please consent to the terms and conditions"
+      "error": "please consent to the terms and conditions",
+      "settings": { "omit": true }
     }],
     "nextText": "SEND",
-    "submit": true
+    "submit": true,
+    "settings": { "omitBody": true }
   }, {
     "type": "info",
     "title": "Well done!",
