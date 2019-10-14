@@ -25,7 +25,7 @@ const createTopic = (form, key) => (
 )
 
 const formField = (form, field) => (
-  Object.values(form).map(f => (f[field] || {}).value)
+  Object.values(form).map(f => (f[field] || {}).value).filter(value => value).join('')
 )
 
 const generateUsername = form => (
@@ -47,6 +47,6 @@ const generateResponse = form => (
 )
 
 export default form => (
-  createUser(form, process.env.VUE_APP_DISCOURSE_USER_KEY) ||
+  // createUser(form, process.env.VUE_APP_DISCOURSE_USER_KEY) ||
   createTopic(form, process.env.VUE_APP_DISCOURSE_TOPIC_KEY)
 )
