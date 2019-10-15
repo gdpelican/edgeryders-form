@@ -50,7 +50,7 @@ export default {
     next()     { return () => (
       this.slide.submit
         ? this.validate() && submit(this.form).then(this.proceed, this.fail)
-        : this.proceed()
+        : this.validate() && this.proceed()
     )}
   },
   methods: {
