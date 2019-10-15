@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .home {
     display: flex;
     flex-direction: column;
@@ -47,5 +47,23 @@ export default {
 
   .logo {
     max-width: 20rem;
+  }
+
+  @media (max-width: 768px) {
+    .top {
+      min-height: 100%;
+    }
+
+    .bottom {
+      min-height: 100%;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    .navigation {
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+    }
   }
 </style>

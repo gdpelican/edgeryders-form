@@ -9,6 +9,7 @@
       </div>
       <Cancel :go="go" />
     </div>
+    <Progress :index="slide.index" :maxIndex="maxIndex" mobile />
     <Navigation
       :back="back"
       :next="next"
@@ -24,6 +25,7 @@ import Body       from './Body'
 import Fields     from './Fields'
 import Error      from './Error'
 import Cancel     from './Cancel'
+import Progress   from './Progress'
 import Navigation from './Navigation'
 import submit     from '../helpers/discourse'
 
@@ -66,11 +68,11 @@ export default {
       return Object.values(this.response).every(({ error }) => !error)
     }
   },
-  components: { Title, Body, Fields, Error, Cancel, Navigation }
+  components: { Title, Body, Fields, Error, Cancel, Progress, Navigation }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .slides {
     margin: 3rem;
     width: 100%;
@@ -86,5 +88,17 @@ export default {
   .even {
     flex-basis: 50%;
     margin-right: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .slides { margin: 2rem; }
+
+    .content { flex-direction: column; }
+
+    .cancel {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
   }
 </style>

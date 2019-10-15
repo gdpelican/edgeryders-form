@@ -1,19 +1,16 @@
 <template>
-  <div class="flex">
+  <div class="navigation flex">
     <div v-if="!allowBack" />
     <button class="navigate primary-background" v-if="allowBack" v-on:click="back">{{backText}}</button>
-    <ul class="dots" v-if="index">
-      <li v-for="dot in dots" :key="dot">
-        <div class="dot complete" v-if="dot < index"></div>
-        <div class="dot incomplete" v-else></div>
-      </li>
-    </ul>
+    <Progress :index="index" :maxIndex="maxIndex" />
     <button class="navigate primary-background" v-if="allowNextButton" v-on:click="next">{{nextText}}</button>
     <a class="navigate primary-background" v-if="allowNextLink" :href="nextUrl" target="_blank">{{nextText}}</a>
   </div>
 </template>
 
 <script>
+import Progress from './Progress'
+
 export default {
   props: {
     back: Function,
@@ -27,15 +24,16 @@ export default {
   computed: {
     allowBack() { return this.back && this.backText },
     allowNextLink() { return this.next && this.nextText && this.nextUrl },
-    allowNextButton() { return this.next && this.nextText && !this.nextUrl },
-    dots() { return [...Array(this.maxIndex).keys()] }
-  }
+    allowNextButton() { return this.next && this.nextText && !this.nextUrl }
+  },
+  components: { Progress }
 }
 </script>
 
 <style scoped>
   .flex {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
   }
@@ -49,20 +47,5 @@ export default {
     cursor: pointer;
     text-decoration: none;
     font-family: sans-serif;
-  }
-
-  .dots {
-    display: flex;
-  }
-
-  .dot {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    margin: 0 0.5rem;
-  }
-
-  .completed {
-    background: black;
   }
 </style>
