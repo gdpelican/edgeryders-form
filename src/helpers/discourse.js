@@ -20,6 +20,7 @@ const createTopic = (form, apiKey) => (
     body: JSON.stringify({
       title: `Rethinking retirement - response by ${formField(form, 'email')}`,
       raw: generateResponse(form)
+      category: process.env.VUE_APP_DISCOURSE_CATEGORY
     })
   }).then(handleResponse)
 )
@@ -27,7 +28,7 @@ const createTopic = (form, apiKey) => (
 const handleResponse = response => (
   response.ok
     ? response.json()
-    : response.json().then(({ errors }) => Promise.reject(errors))
+    : response.json().then(({ errors }) => Promise.reject(errors.join(', ')))
 )
 
 const formField = (form, field) => (

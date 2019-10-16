@@ -70,7 +70,7 @@
       "half": true,
       "required": true,
       "autofocus": true,
-      "error": "please enter your name"
+      "error": "Please enter your name"
     }, {
       "name": "age",
       "type": "integer",
@@ -81,13 +81,13 @@
       "type": "email",
       "placeholder": "E-mail",
       "required": true,
-      "error": "please enter your email address"
+      "error": "Please enter your email address"
     }, {
       "name": "consent",
       "type": "checkbox",
       "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas est tellus, malesuada et finibus eget, faucibus atortor. Pellentesque eros velit, ullamcorper vitae tempor sitamet, tincidunt at erat",
       "required": true,
-      "error": "please consent to the terms and conditions",
+      "error": "Please consent to the terms and conditions",
       "settings": { "omit": true }
     }],
     "nextText": "SEND",
