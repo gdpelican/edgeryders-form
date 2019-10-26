@@ -8,12 +8,14 @@
   "defaults": {
     "info": {
       "backText": "BACK",
-      "nextText": "NEXT"
+      "nextText": "NEXT",
+      "cancelTitle": "Clear all answers and start again"
     },
     "form": {
       "title": "Q{{index}}",
       "backText": "BACK",
       "nextText": "NEXT",
+      "cancelTitle": "Clear all answers and start again",
       "fields": [{
         "name": "message",
         "type": "textarea",
@@ -81,7 +83,8 @@
       "type": "email",
       "placeholder": "E-mail",
       "required": true,
-      "error": "Please enter your email address"
+      "error": "Please enter your email address",
+      "settings": { "omit": true }
     }, {
       "name": "consent",
       "type": "checkbox",

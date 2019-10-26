@@ -6,7 +6,7 @@
 <script>
 import Home from './components/Home.vue'
 import Slides from './components/Slides.vue'
-import data from './assets/locales/data.en.json'
+import data from './assets/data/en.json'
 
 const { brand, slides, defaults } = data
 
