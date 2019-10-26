@@ -7,7 +7,7 @@
         <Fields v-bind="slide" :response="response" :next="next" />
         <Error :error="error" />
       </div>
-      <Cancel :go="go" />
+      <Cancel :go="go" :title="slide.cancelTitle" />
     </div>
     <Progress :index="slide.index" :maxIndex="maxIndex" mobile />
     <Navigation

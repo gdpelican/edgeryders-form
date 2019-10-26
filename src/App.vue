@@ -8,14 +8,14 @@ import Home from './components/Home.vue'
 import Slides from './components/Slides.vue'
 import data from './assets/data/en.json'
 
-const { brand, slides, defaults } = data
+const { brand, slides, slideDefaults } = data
 
 export default {
   name: 'edgeryders-form',
   data: () => ({
     page: 'home',
     brand,
-    slides: slides.map(s => Object.assign({}, defaults[s.type], s))
+    slides: slides.map(s => Object.assign({}, slideDefaults, s))
   }),
   methods: {
     go(page) { this.page = page },

@@ -1,10 +1,10 @@
 <template>
-  <button class="cancel primary-background" v-on:click="go('home')">✕</button>
+  <button class="cancel primary-background" :title="title" v-on:click="go('home')">✕</button>
 </template>
 
 <script>
 export default {
-  props: { go: Function }
+  props: { go: Function, title: String }
 }
 </script>
 

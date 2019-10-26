@@ -1,9 +1,9 @@
 <template>
   <div class="navigation flex">
     <div v-if="!allowBack" />
-    <button class="navigate primary-background" v-if="allowBack" v-on:click="back">{{backText}}</button>
+    <button :title="backTitle" class="navigate primary-background" v-if="allowBack" v-on:click="back">{{backText}}</button>
     <Progress :index="index" :maxIndex="maxIndex" />
-    <button class="navigate primary-background" v-if="allowNextButton" v-on:click="next">{{nextText}}</button>
+    <button :title="nextTitle" class="navigate primary-background" v-if="allowNextButton" v-on:click="next">{{nextText}}</button>
     <a class="navigate primary-background" v-if="allowNextLink" :href="nextUrl" target="_blank">{{nextText}}</a>
   </div>
 </template>
@@ -15,8 +15,10 @@ export default {
   props: {
     back: Function,
     backText: String,
+    backTitle: String,
     next: Function,
     nextText: String,
+    nextTitle: String,
     nextUrl: String,
     index: Number,
     maxIndex: Number,

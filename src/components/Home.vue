@@ -5,7 +5,7 @@
     </div>
     <div class="bottom secondary-background">
       <img class="logo" :src="brand.imageSrc" :alt="brand.title" />
-      <Navigation :nextText="brand.beginText" :next="next" />
+      <Navigation :nextTitle="brand.beginTitle" :nextText="brand.beginText" :next="next" />
     </div>
   </div>
 </template>
