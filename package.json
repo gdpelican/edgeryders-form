@@ -12,6 +12,7 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "secure-random-string": "^1.1.2",
+    "parameterize": "1.0.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

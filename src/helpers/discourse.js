@@ -1,4 +1,5 @@
 import generatePassword from 'secure-random-string'
+import parameterize from 'parameterize'
 
 const createUser = (form, authKey) => (
   fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
@@ -36,10 +37,7 @@ const formField = (form, field) => (
 )
 
 const generateUsername = form => (
-  [
-    formField(form, 'email').split('@')[0],
-    Math.ceil(Math.random() * 100)
-  ].join('_')
+  `${parameterize(formField(form, 'name'), 20, '_')}_${Math.ceil(Math.random() * 100)}`
 )
 
 const generateResponse = form => (
