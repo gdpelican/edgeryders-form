@@ -5,7 +5,7 @@
       <div class="even">
         <Body v-bind="slide" :response="response" :next="next" />
         <Fields v-bind="slide" :response="response" :next="next" />
-        <Error :error="error" />
+        <Error v-for="error in errors" :key="error" :error="error" />
       </div>
       <Cancel :go="go" :title="slide.cancelTitle" />
     </div>
@@ -31,7 +31,7 @@ import submit     from '../helpers/discourse'
 
 export default {
   props: { go: Function, slides: Array },
-  data() { return { form: {}, currentIndex: 0, error: null } },
+  data() { return { form: {}, currentIndex: 0, errors: [] } },
   created() {
     this.slides.filter(s => s.index).forEach(({ index, body, settings, fields }) => {
       this.$set(this.form, index, { body, settings })
@@ -56,7 +56,7 @@ export default {
   methods: {
     retreat() { this.currentIndex -= 1 },
     proceed() { this.currentIndex += 1 },
-    fail(failure) { this.error = failure },
+    fail(errors) { this.errors = errors },
     validate() {
       const { index, fields } = this.slide
       if (!index || !fields) { return true }
