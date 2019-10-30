@@ -92,5 +92,8 @@
     "backText": null,
     "nextText": "MAP",
     "nextUrl": "http://maps.google.com"
-  }]
+  }],
+  "errorMessages": {
+    "networkError": "Sorry, we were unable to store your response due to a network connectivity issue. Please try again."
+  }
 }

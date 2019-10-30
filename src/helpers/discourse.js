@@ -1,6 +1,6 @@
 import generatePassword from 'secure-random-string'
 import parameterize from 'parameterize'
-import { errorMessages } from '../assets/data/en.json'
+const { errorMessages } = (() => require(`../assets/data/${process.env.VUE_APP_LANG}.json`))()
 
 const createUser = (form, authKey) => (
   fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
