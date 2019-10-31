@@ -31,7 +31,11 @@ const createTopic = (form, apiKey) => (
 const handleResponse = response => (
   response.ok
     ? response.json()
-    : response.json().then(({ errors }) => Promise.reject(errors))
+    : response.json().then(({ errors }) => (
+      Promise.reject(Object.keys(errors).map(key => (
+        errorMessages[key] || errorMessages.default
+      )))
+    ))
 )
 
 const handleNetworkError = () => Promise.reject([errorMessages.networkError])

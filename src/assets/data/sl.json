@@ -94,6 +94,9 @@
     "nextUrl": "/map.pdf"
   }],
   "errorMessages": {
-
+    "networkError": "Sorry, we were unable to store your response due to a network connectivity issue. Please try clicking on \"Send\" again.",
+    "username": "It seems somebody has already chosen your preferred username / nickname. Please enter a different one and click again on \"Send\".",
+    "email": "It seems you already have an account on our forum using this e-mail address, or have entered an invalid address. Please choose a different e-mail address and click again on \"Send\".",
+    "default": "Sorry, we were unable to store your response due to an unknown error. Please try clicking on \"Send\" again."
   }
 }
