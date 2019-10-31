@@ -16,6 +16,8 @@ export default {
     height: 2.25rem;
     cursor: pointer;
     border: 0;
+    margin: 0;
+    padding: 0;
     border-radius: 100%;
   }
 </style>
