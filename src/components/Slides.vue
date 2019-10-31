@@ -1,13 +1,14 @@
 <template>
-  <div class="slides">
+  <div :class="{ slides: true, 'primary-background': slide.settings.invert }">
     <div class="content">
       <Title class="even" v-bind="slide" />
       <div class="even">
         <Body v-bind="slide" :response="response" :next="next" />
+        <Diagram v-bind="slide.diagram" />
         <Fields v-bind="slide" :response="response" :next="next" />
-        <Error :error="error" />
+        <Error v-for="error in errors" :key="error" :error="error" />
       </div>
-      <Cancel :go="go" :title="slide.cancelTitle" />
+      <Cancel :go="go" :title="slide.cancelTitle" :invert="slide.settings.invert" />
     </div>
     <Progress :index="slide.index" :maxIndex="maxIndex" mobile />
     <Navigation
@@ -22,6 +23,7 @@
 <script>
 import Title      from './Title'
 import Body       from './Body'
+import Diagram    from './Diagram'
 import Fields     from './Fields'
 import Error      from './Error'
 import Cancel     from './Cancel'
@@ -31,7 +33,7 @@ import submit     from '../helpers/discourse'
 
 export default {
   props: { go: Function, slides: Array },
-  data() { return { form: {}, currentIndex: 0, error: null } },
+  data() { return { form: {}, currentIndex: 0, errors: [] } },
   created() {
     this.slides.filter(s => s.index).forEach(({ index, body, settings, fields }) => {
       this.$set(this.form, index, { body, settings })
@@ -40,6 +42,13 @@ export default {
         this.$set(this.form[index][name], 'value', '')
         this.$set(this.form[index][name], 'error', '')
       })
+    })
+
+    document.addEventListener('keyup', ({ keyCode }) => {
+      switch(keyCode) {
+        case 37: return this.back ? this.back() : null
+        case 39: return this.next ? this.next() : null
+      }
     })
   },
   computed: {
@@ -56,8 +65,9 @@ export default {
   methods: {
     retreat() { this.currentIndex -= 1 },
     proceed() { this.currentIndex += 1 },
-    fail(failure) { this.error = failure },
+    fail(errors) { this.errors = errors },
     validate() {
+      this.errors = []
       const { index, fields } = this.slide
       if (!index || !fields) { return true }
 
@@ -68,13 +78,13 @@ export default {
       return Object.values(this.response).every(({ error }) => !error)
     }
   },
-  components: { Title, Body, Fields, Error, Cancel, Progress, Navigation }
+  components: { Title, Body, Diagram, Fields, Error, Cancel, Progress, Navigation }
 }
 </script>
 
 <style scoped lang="scss">
   .slides {
-    margin: 3rem;
+    padding: 3rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -91,7 +101,7 @@ export default {
   }
 
   @media (max-width: 768px) {
-    .slides { margin: 2rem; }
+    .slides { padding: 2rem; }
 
     .content { flex-direction: column; }
 

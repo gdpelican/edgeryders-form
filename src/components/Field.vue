@@ -38,14 +38,18 @@ export default {
     autofocus: Boolean,
     next: Function
   },
-  mounted() {
-    if (this.autofocus) { this.$refs[this.name].focus() }
-  },
+  mounted() { this.handleFocus() },
+  updated() { this.handleFocus() },
   computed: {
     error() { return this.response[this.name].error },
     klass() { return `${this.half ? 'half' : 'full'} ${this.type}` },
     isTextarea() { return this.type === 'textarea' },
-    isCheckbox() { return this.type === 'checkbox' }
+    isCheckbox() { return this.type === 'checkbox' },
+    textarea() { return this.$refs[this.name] },
+    isFocused() { return document.activeElement == this.textarea }
+  },
+  methods: {
+    handleFocus() { if (this.autofocus && !this.isFocused) { this.textarea.focus() } }
   },
   components: { Error }
 }

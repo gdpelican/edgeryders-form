@@ -3,8 +3,7 @@
     <div v-if="!allowBack" />
     <button :title="backTitle" class="navigate primary-background" v-if="allowBack" v-on:click="back">{{backText}}</button>
     <Progress :index="index" :maxIndex="maxIndex" />
-    <button :title="nextTitle" class="navigate primary-background" v-if="allowNextButton" v-on:click="next">{{nextText}}</button>
-    <a class="navigate primary-background" v-if="allowNextLink" :href="nextUrl" target="_blank">{{nextText}}</a>
+    <button :title="nextTitle" class="navigate primary-background" v-if="allowNext" v-on:click="next">{{nextText}}</button>
   </div>
 </template>
 
@@ -25,8 +24,7 @@ export default {
   },
   computed: {
     allowBack() { return this.back && this.backText },
-    allowNextLink() { return this.next && this.nextText && this.nextUrl },
-    allowNextButton() { return this.next && this.nextText && !this.nextUrl }
+    allowNext() { return this.next && this.nextText }
   },
   components: { Progress }
 }

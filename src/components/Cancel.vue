@@ -1,10 +1,16 @@
 <template>
-  <button class="cancel primary-background" :title="title" v-on:click="go('home')">✕</button>
+  <button :class="{
+    cancel: true,
+    'primary': this.invert,
+    'primary-background': !this.invert,
+    'secondary': !this.invert,
+    'secondary-background': this.invert
+  }" :title="title" v-on:click="go('home')">✕</button>
 </template>
 
 <script>
 export default {
-  props: { go: Function, title: String }
+  props: { go: Function, title: String, invert: Boolean }
 }
 </script>
 
@@ -16,6 +22,8 @@ export default {
     height: 2.25rem;
     cursor: pointer;
     border: 0;
+    margin: 0;
+    padding: 0;
     border-radius: 100%;
   }
 </style>

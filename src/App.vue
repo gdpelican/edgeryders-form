@@ -6,9 +6,8 @@
 <script>
 import Home from './components/Home.vue'
 import Slides from './components/Slides.vue'
-import data from './assets/data/en.json'
 
-const { brand, slides, slideDefaults } = data
+const { brand, slides, slideDefaults } = (() => require(`./assets/data/${process.env.VUE_APP_LANG}.json`))()
 
 export default {
   name: 'edgeryders-form',

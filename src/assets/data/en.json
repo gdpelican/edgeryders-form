@@ -21,6 +21,7 @@
       "autofocus": true,
       "error": "Please write a response!"
     }],
+    "diagram": {},
     "settings": { "omitFields": true }
   },
   "slides": [{
@@ -66,7 +67,7 @@
     }, {
       "name": "age",
       "type": "integer",
-      "placeholder": "Age",
+      "placeholder": "Age (optional)",
       "half": true
     }, {
       "name": "email",
@@ -78,7 +79,7 @@
     }, {
       "name": "consent",
       "type": "checkbox",
-      "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas est tellus, malesuada et finibus eget, faucibus atortor. Pellentesque eros velit, ullamcorper vitae tempor sitamet, tincidunt at erat",
+      "placeholder": "I understand that this form is used for research. Researchers are encouraged to treat your answers as a window into societal, economic, technological, and political trends and transformations that affect us. As I participate in the discussion, I do not fear bad consequences when sharing with others my views and alignment on societal, economic, technological and political issues",
       "required": true,
       "error": "Please consent to the terms and conditions",
       "settings": { "omit": true }
@@ -89,8 +90,24 @@
   }, {
     "title": "Well done!",
     "body": "Thank you for taking the time to fill out the questionnaire! Since this project is not just a research, you can experience one of the versions of retirement by visiting the the Fužine retirement home, aka Academy of Life. The challenge team has worked there for the past months and prepared different ways for you to engage with the space and its inhabitants. You will receive the instructions on your email, or you can grab the special BIO zine that explains it. See you at the Cafe at Home!<br /><br />* you will receive the confirmation of your participation and access to delete or edit your data on your email, as well as the updates on the Academy of Life program and events. You can opt out at any time, no spam guaranteed.",
+    "fields": [],
     "backText": null,
-    "nextText": "MAP",
-    "nextUrl": "http://maps.google.com"
-  }]
+    "nextText": "MAP"
+  }, {
+    "title": "Map!",
+    "diagram": {
+      "src": "/map.png",
+      "alt": "Map to the cafe"
+    },
+    "fields": [],
+    "settings": { "invert": true },
+    "backText": null,
+    "nextText": null
+  }],
+  "errorMessages": {
+    "networkError": "Sorry, we were unable to store your response due to a network connectivity issue. Please try clicking on \"Send\" again.",
+    "username": "It seems somebody has already chosen your preferred username / nickname. Please enter a different one and click again on \"Send\".",
+    "email": "It seems you already have an account on our forum using this e-mail address, or have entered an invalid address. Please choose a different e-mail address and click again on \"Send\".",
+    "default": "Sorry, we were unable to store your response due to an unknown error. Please try clicking on \"Send\" again."
+  }
 }
