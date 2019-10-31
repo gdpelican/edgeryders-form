@@ -43,6 +43,13 @@ export default {
         this.$set(this.form[index][name], 'error', '')
       })
     })
+
+    document.addEventListener('keyup', ({ keyCode }) => {
+      switch(keyCode) {
+        case 37: return this.back ? this.back() : null
+        case 39: return this.next ? this.next() : null
+      }
+    })
   },
   computed: {
     slide()    { return this.slides[this.currentIndex] },
