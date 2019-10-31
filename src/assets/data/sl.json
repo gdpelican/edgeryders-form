@@ -90,8 +90,17 @@
     "title": "Dobro opravljeno!",
     "body": "Hvala, ker ste si vzeli čas in izpolnili vprašalnik! Ker ta projekt ni samo raziskava, lahko eno od različic upokojitve doživite z obiskom doma za upokojence Fužine, aka Academy of Life (Akademija življenja). Skupina za izzive je tam delala pretekle mesece in pripravila različne načine za sodelovanje s prostorom in njegovimi prebivalci. Program lahko preverite na spletni strani bio.si, ali pa v posebnem BIO zinu. Se vidimo v Cafe at Home!<br /><br />*na email račun boste prejeli potrdilo o sodelovanju in dostop za izbris in urejanje vaših podatkov, prav tako pa novice in program dogodkov, ki se odvijajo v Akademiji življenja. Odjavite se lahko kadarkoli, zagotovljeno brez neželenih sporočil.",
     "backText": null,
-    "nextText": "ZEMLJEVID",
-    "nextUrl": "/map.pdf"
+    "nextText": "ZEMLJEVID"
+  }, {
+    "title": "Zemljevid!",
+    "diagram": {
+      "src": "/map.png",
+      "alt": "Zemljevid"
+    },
+    "fields": [],
+    "settings": { "invert": true },
+    "backText": null,
+    "nextText": null
   }],
   "errorMessages": {
     "networkError": "Sorry, we were unable to store your response due to a network connectivity issue. Please try clicking on \"Send\" again.",
