@@ -73,9 +73,6 @@ This has to be done in both Discourse instances:
     # Numeric category ID of a category where to post the survey responses.
     # The category must allow all users to post. To find the ID, see https://edgeryders.eu/t/-/6647#heading--2-1
     VUE_APP_DISCOURSE_CATEGORY=343
-    # Specify the language to use for this installation
-    # (currently available languages are english (en) and slovenian (sl))
-    VUE_APP_LANG=en
     ```
 
 3. Install required package dependencies:
@@ -83,7 +80,7 @@ This has to be done in both Discourse instances:
     ```
     yarn install
     ```
-    
+
 4. Compile and minify the site for production use:
 
     ```
