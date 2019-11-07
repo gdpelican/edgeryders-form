@@ -7,7 +7,7 @@
     :slide="initialSlide"
     :go="go"
   />
-  <Slides v-else-if="on('slides')" :slides="slides" :go="go" />
+  <Slides v-else-if="on('slides')" :messages="messages" :slides="slides" :go="go" />
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
   computed: {
     locales() { return Object.keys(allLocales) },
     data() { return allLocales[this.locale] },
+    messages() { return this.data.messages },
     brand() { return this.data.brand },
     slides() { return this.data.slides.map(s => Object.assign({}, this.data.slideDefaults, s)) },
     initialSlide() { return this.slides[0] }

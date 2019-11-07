@@ -32,7 +32,7 @@ import Navigation from './Navigation'
 import submit     from '../helpers/discourse'
 
 export default {
-  props: { go: Function, slides: Array },
+  props: { go: Function, slides: Array, messages: Object },
   data() { return { form: {}, currentIndex: 0, errors: [] } },
   created() {
     this.slides.filter(s => s.index).forEach(({ index, body, settings, fields }) => {
@@ -58,7 +58,7 @@ export default {
     back()     { return this.currentIndex > 0 ? this.retreat : null },
     next()     { return () => (
       this.slide.submit
-        ? this.validate() && submit(this.form).then(this.proceed, this.fail)
+        ? this.validate() && submit(this.form, this.messages).then(this.proceed, this.fail)
         : this.validate() && this.proceed()
     )}
   },
