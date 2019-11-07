@@ -2,6 +2,9 @@
   <div class="home">
     <div class="top">
       <Title v-bind="slide" />
+      <div class="locales">
+        <Locale v-for="l in locales" :key="l" :locale="l" :current="locale" :setLocale="setLocale" />
+      </div>
     </div>
     <div class="bottom secondary-background">
       <img class="logo" :src="brand.imageSrc" :alt="brand.title" />
@@ -13,13 +16,21 @@
 <script>
 import Title from './Title'
 import Navigation from './Navigation'
+import Locale from './Locale'
 
 export default {
-  props: { brand: Object, go: Function, slide: Object },
+  props: {
+    locale: String,
+    locales: Array,
+    setLocale: Function,
+    brand: Object,
+    go: Function,
+    slide: Object
+  },
   computed: {
     next() { return () => this.go('slides') }
   },
-  components: { Title, Navigation }
+  components: { Title, Locale, Navigation }
 }
 </script>
 
@@ -45,6 +56,14 @@ export default {
     color: white;
   }
 
+  .locales {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 0 0 0.5rem;
+    padding: 2rem;
+  }
+
   .logo {
     max-width: 20rem;
   }
@@ -64,6 +83,11 @@ export default {
       align-items: center;
       justify-content: center;
       margin: auto;
+    }
+
+    .locales {
+      top: auto;
+      bottom: 1rem;
     }
   }
 </style>

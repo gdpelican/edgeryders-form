@@ -1,5 +1,12 @@
 <template>
-  <Home v-if="on('home')" :brand="brand" :slide="initialSlide" :go="go" />
+  <Home v-if="on('home')"
+    :locale="locale"
+    :locales="locales"
+    :setLocale="setLocale"
+    :brand="brand"
+    :slide="initialSlide"
+    :go="go"
+  />
   <Slides v-else-if="on('slides')" :slides="slides" :go="go" />
 </template>
 
@@ -7,20 +14,28 @@
 import Home from './components/Home.vue'
 import Slides from './components/Slides.vue'
 
-const { brand, slides, slideDefaults } = (() => require(`./assets/data/${process.env.VUE_APP_LANG}.json`))()
+const allLocales = require.context('.', true, /\.\/assets\/data\/.*\.json$/).keys()
+  .map(path => path.replace('./assets/data/', '').replace('.json', ''))
+  .reduce((result, locale) => (
+    { ...result, [locale]: (() => require(`./assets/data/${locale}.json`))() }
+  ), {})
 
 export default {
   name: 'edgeryders-form',
   data: () => ({
-    page: 'home',
-    brand,
-    slides: slides.map(s => Object.assign({}, slideDefaults, s))
+    locale: 'en',
+    page: 'home'
   }),
   methods: {
     go(page) { this.page = page },
-    on(page) { return this.page === page }
+    on(page) { return this.page === page },
+    setLocale(locale) { this.locale = locale }
   },
   computed: {
+    locales() { return Object.keys(allLocales) },
+    data() { return allLocales[this.locale] },
+    brand() { return this.data.brand },
+    slides() { return this.data.slides.map(s => Object.assign({}, this.data.slideDefaults, s)) },
     initialSlide() { return this.slides[0] }
   },
   components: { Home, Slides }
