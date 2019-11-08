@@ -1,8 +1,7 @@
 import generatePassword from 'secure-random-string'
 import parameterize from 'parameterize'
-const { errorMessages } = (() => require(`../assets/data/${process.env.VUE_APP_LANG}.json`))()
 
-const createUser = (form, authKey) => (
+const createUser = (form, authKey, messages) => (
   fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
     accepted_gtc: true,
     accepted_privacy_policy: true,
@@ -13,10 +12,10 @@ const createUser = (form, authKey) => (
     username: generateUsername(form),
     password: generatePassword({ length: 15 })
   }).map(pair => pair.map(encodeURIComponent).join('=')).join('&')}`)
-    .then(handleResponse, handleNetworkError)
+    .then(handleResponse(messages), handleNetworkError(messages))
 )
 
-const createTopic = (form, apiKey) => (
+const createTopic = (form, apiKey, messages) => (
   fetch(process.env.VUE_APP_DISCOURSE_TOPIC_URL, {
     method: 'post',
     headers: { 'Api-Key': apiKey, 'Content-Type': 'application/json' },
@@ -25,20 +24,25 @@ const createTopic = (form, apiKey) => (
       raw: generateResponse(form),
       category: process.env.VUE_APP_DISCOURSE_CATEGORY
     })
-  }).then(handleResponse, handleNetworkError)
+  }).then(handleResponse(messages), handleNetworkError(messages))
 )
 
-const handleResponse = response => (
-  response.ok
-    ? response.json()
-    : response.json().then(({ errors }) => (
-      Promise.reject(Object.keys(errors).map(key => (
-        errorMessages[key] || errorMessages.default
-      )))
-    ))
+const handleResponse = messages => (
+  response => (
+    response.ok
+      ? response.json()
+      : response.json().then(({ errors }) => (
+        Promise.reject(Object.keys(errors).map(key => (
+          messages[key] || messages.default
+        )))
+      )
+    )
+  )
 )
 
-const handleNetworkError = () => Promise.reject([errorMessages.networkError])
+const handleNetworkError = messages => (
+  () => Promise.reject([messages.networkError])
+)
 
 const formField = (form, field) => (
   Object.values(form).map(f => (f[field] || {}).value).filter(value => value).join('')
@@ -60,8 +64,8 @@ const generateResponse = form => (
   )).flat().join('\n\n')
 )
 
-export default form => (
-  createUser(form, process.env.VUE_APP_DISCOURSE_AUTH_KEY).then(json => (
-    createTopic(form, json.api_keys[0].key)
+export default (form, messages) => (
+  createUser(form, process.env.VUE_APP_DISCOURSE_AUTH_KEY, messages).then(json => (
+    createTopic(form, json.api_keys[0].key, messages)
   ))
 )
