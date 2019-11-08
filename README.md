@@ -94,10 +94,63 @@ This has to be done in both Discourse instances:
 
 ## 3. Building the survey form
 
-The form slide types, texts and buttons can be configured with JSON files as documented below.
+The form slide types, texts and buttons, and structure can be configured with JSON files.
 
-[TODO]
+A simple example is below:
 
+```
+{
+  "brand": {                            // controls the values presented on the landing page
+    "title": "Some title",              // the title of the page
+    "logoSrc": "/favicon.ico",          // path to the desired favicon
+    "imageSrc": "/logo.png",            // path to the brand image in the bottom left of the page
+    "beginText": "Begin",               // text for the button to enter the form
+    "beginTitle": "Let's begin!"        // title text for the button to enter the form
+  },
+
+  slides": [{                           // an array of slides to present in order
+    "title": "A title",                 // the title of the slide
+    "subtitle": "A subtitle",           // a subtitle
+    "body": "Some copy",                // a slide description
+    "diagram": {                        // an image to include beneath the description
+      "src": "https://map.org/map.png", // the src of the image
+      "alt": "Some image"               // the alt of the image
+    },
+    "index": 1,                         // an index to include in the submitted form. Forms with fields must include this value to be included in the final response.
+    "backText": "Back",                 // the text of the back button. Set to null to disallow going back from this slide
+    "backTitle": "Go back",             // the title text of the back button
+    "nextText": "Next",                 // the text of the next button. Set to null to disallow going forward from this slide
+    "nextTitle": "Go forward",          // the title text of the next button
+    "cancelTitle": "To the beginning"   // the title text of the cancel button
+    "settings": {
+      "omitFields": true
+    },
+    "fields": [{                        // a list of fields to include in a form on the slide. leave as '[]' to make an informational slide.
+      "name": "name",                   // the name attribute of the field input
+      "type": "text",                   // the type attribute of the field input
+      "placeholder": "Name/nickname",   // the placeholder of the field input
+      "half": true,                     // set to true to set this and the next field on the same line
+      "required": true,                 // display the given error if field is not filled out on next
+      "autofocus": true,                // select this field input automatically when navigating to this slide
+      "error": "This is required"       // error to display if required field is not filled in
+    }],
+
+    "slideDefaults": {                  // all slides will fall back to the defaults given in this object if they are not defined on the slide themself.
+      ...
+    },
+
+    "settings" [{                       // various settings used to define alternate behaviour for this slide
+      "invert": true                    // display this slide with primary color background and secondary color foreground
+      "omitFields": true                // don't include the field names with this response
+    }]
+
+    "messages" {                        // error messages to display when something goes wrong
+      "networkError": "oops!"           // message when unable to get a response from the remote server
+      "default": "something went wrong" // default error message
+    }
+  }]
+}
+```
 
 ## 4. Development
 
