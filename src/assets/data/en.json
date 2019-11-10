@@ -17,7 +17,7 @@
       "name": "message",
       "type": "textarea",
       "placeholder": "write here...",
-      "required": true,
+      "required": false,
       "autofocus": true,
       "error": "Please write a response!"
     }],
