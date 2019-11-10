@@ -46,13 +46,15 @@ This plugin has to be installed on the Discourse instance providing the actual f
 
 **4. Enable and configure CORS in Discourse**
 
-This has to be done in both Discourse instances:
+The following steps have to be done in both Discourse instances (SSO provider and SSO client).
 
-1. In a standalone ("no Docker") Discourse installation, edit the file `config/discourse.conf` and set `enable_cors = true` in there. Restart your Discourse web server afterwards. In a Docker-based installation, the configuration goes into `app.yml` in the project root folder in a slightly different form; we did not test that yet.
+1. **Enable CORS.** In a standalone ("no Docker") Discourse installation, edit the file `config/discourse.conf` and set `enable_cors = true` in there. Restart your Discourse web server afterwards. In a Docker-based installation, the configuration goes into `app.yml` in the project root folder in a slightly different form; we did not test that yet.
 
-2. Add the domain that will host the Edgeryders Form Vue.js application to the `cors_origins` Discourse setting via the admin panel.
+2. **Add the CORS origin.** Add the domain that will host this Edgeryders Form Vue.js application to the `cors_origins` setting via the Discourse admin panel.
 
-**5. Install the Egeryders Form software**
+3. **Adapt additional CORS configurations.** Non-Discourse software may also require a CORS configuration, for example to access statically served files under `https://example.com/.well-known/`. If so, make sure that your separate CORS configuration at webserver level does not conflict with that of Discourse by appending header values (which [browsers don't accept](http://www.w3.org/TR/cors/#access-control-allow-origin-response-header)) or overwriting header values. For Apache, see the tips [here](https://stackoverflow.com/a/47383394) and [here](https://stackoverflow.com/a/23998863) to get this to work.
+
+**5. Install the Edgeryders Form software**
 
 1. Clone the repository into a folder for serving a website:
 
