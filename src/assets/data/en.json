@@ -79,7 +79,7 @@
     }, {
       "name": "consent",
       "type": "checkbox",
-      "placeholder": "I understand that this form is used for research. Researchers are encouraged to treat your answers as a window into societal, economic, technological, and political trends and transformations that affect us. As I participate in the discussion, I do not fear bad consequences when sharing with others my views and alignment on societal, economic, technological and political issues",
+      "placeholder": "You will receive the confirmation of your participation on your email. You can opt out at any time, no spam guaranteed.",
       "required": true,
       "error": "Please consent to the terms and conditions",
       "settings": { "omit": true }
