@@ -5,7 +5,7 @@ const createUser = (form, authKey, messages) => (
   fetch(`${process.env.VUE_APP_DISCOURSE_USER_URL}?${Object.entries({
     accepted_gtc: true,
     accepted_privacy_policy: true,
-    edgeryders_research_content: true,
+    edgeryders_research_consent: true,
     requested_api_keys: [process.env.VUE_APP_DISCOURSE_DOMAIN],
     auth_key: authKey,
     email: formField(form, 'email'),
