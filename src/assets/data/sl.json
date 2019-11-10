@@ -78,7 +78,7 @@
     }, {
       "name": "consent",
       "type": "checkbox",
-      "placeholder": "Na email račun boste prejeli potrdilo o sodelovanju. Odjavite se lahko kadarkoli, zagotovljeno brez neželenih sporočil.",
+      "placeholder": "I understand that this form is used for research. Researchers are encouraged to treat your answers as a window into societal, economic, technological, and political trends and transformations that affect us. As I participate in the discussion, I do not fear bad consequences when sharing with others my views and alignment on societal, economic, technological and political issues.",
       "required": true,
       "error": "Please consent to the terms and conditions",
       "settings": { "omit": true }
@@ -88,7 +88,7 @@
     "settings": { "omitBody": true }
   }, {
     "title": "Dobro opravljeno!",
-    "body": "Hvala, ker ste si vzeli čas in izpolnili vprašalnik! Ker ta projekt ni samo raziskava, lahko eno od različic upokojitve doživite z obiskom doma za upokojence Fužine, aka Academy of Life (Akademija življenja). Skupina za izzive je tam delala pretekle mesece in pripravila različne načine za sodelovanje s prostorom in njegovimi prebivalci. Program lahko preverite na spletni strani bio.si, ali pa v posebnem BIO zinu. Se vidimo v Cafe at Home!<br /><br />*na email račun boste prejeli potrdilo o sodelovanju in dostop za izbris in urejanje vaših podatkov, prav tako pa novice in program dogodkov, ki se odvijajo v Akademiji življenja. Odjavite se lahko kadarkoli, zagotovljeno brez neželenih sporočil.",
+    "body": "Hvala, ker ste si vzeli čas in izpolnili vprašalnik! Ker ta projekt ni samo raziskava, lahko eno od različic upokojitve doživite z obiskom doma za upokojence Fužine, aka Academy of Life (Akademija življenja). Skupina za izzive je tam delala pretekle mesece in pripravila različne načine za sodelovanje s prostorom in njegovimi prebivalci. Program lahko preverite na spletni strani bio.si, ali pa v posebnem BIO zinu. Se vidimo v Cafe at Home!<br /><br />* Na email račun boste prejeli potrdilo o sodelovanju. Odjavite se lahko kadarkoli, zagotovljeno brez neželenih sporočil.",
     "backText": null,
     "nextText": "ZEMLJEVID"
   }, {

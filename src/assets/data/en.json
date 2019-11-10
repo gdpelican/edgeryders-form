@@ -79,7 +79,7 @@
     }, {
       "name": "consent",
       "type": "checkbox",
-      "placeholder": "You will receive the confirmation of your participation on your email. You can opt out at any time, no spam guaranteed.",
+      "placeholder": "I understand that this form is used for research. Researchers are encouraged to treat your answers as a window into societal, economic, technological, and political trends and transformations that affect us. As I participate in the discussion, I do not fear bad consequences when sharing with others my views and alignment on societal, economic, technological and political issues.",
       "required": true,
       "error": "Please consent to the terms and conditions",
       "settings": { "omit": true }
@@ -89,7 +89,7 @@
     "settings": { "omitBody": true }
   }, {
     "title": "Well done!",
-    "body": "Thank you for taking the time to fill out the questionnaire! Since this project is not just a research, you can experience one of the versions of retirement by visiting the the Fužine retirement home, aka Academy of Life. The challenge team has worked there for the past months and prepared different ways for you to engage with the space and its inhabitants. You will receive the instructions on your email, or you can grab the special BIO zine that explains it. See you at the Cafe at Home!<br /><br />* you will receive the confirmation of your participation and access to delete or edit your data on your email, as well as the updates on the Academy of Life program and events. You can opt out at any time, no spam guaranteed.",
+    "body": "Thank you for taking the time to fill out the questionnaire! Since this project is not just a research, you can experience one of the versions of retirement by visiting the the Fužine retirement home, aka Academy of Life. The challenge team has worked there for the past months and prepared different ways for you to engage with the space and its inhabitants. You can find the instructions on the bio.si website, or you can grab the special BIO zine that explains it. See you at the Cafe at Home!<br /><br />* You will receive the confirmation of your participation on your email. You can opt out at any time, no spam guaranteed.",
     "fields": [],
     "backText": null,
     "nextText": "MAP"
